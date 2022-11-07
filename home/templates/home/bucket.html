@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+      <th scope="col">Download</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%  for object in objects %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ object.Key }}</td>
+      <td>{{ object.Size|filesizeformat }}</td>
+      <td><a href="{% url 'home:bucket_download' object.Key %}">Download</a></td>
+        <td><a href="{% url 'home:bucket_delete' object.Key %}">Delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
